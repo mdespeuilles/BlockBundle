@@ -6,6 +6,7 @@ use Mdespeuilles\LanguageBundle\Entity\Traits\LanguageEntity;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Timestampable\Traits\TimestampableEntity;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
+use Symfony\Component\HttpFoundation\File\File;
 
 /**
  * ImageBlock

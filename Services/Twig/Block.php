@@ -8,7 +8,6 @@
 
 namespace Mdespeuilles\BlockBundle\Services\Twig;
 
-
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
 class Block extends \Twig_Extension
@@ -37,12 +36,15 @@ class Block extends \Twig_Extension
             new \Twig_SimpleFunction('getImageBlock',  array($this, 'getImageBlock'), array('is_safe' => array('html'))),
         );
     }
-
-
+    
+    /**
+     * @param $id
+     * @return null
+     */
     public function getBlock($id)
     {
         $languagePrefix = $this->container->get('request_stack')->getCurrentRequest()->getLocale();
-        $language = $this->container->get("app.entity.language")->findOneBy([
+        $language = $this->container->get("mdespeuilles.entity.language")->findOneBy([
             'prefix' => $languagePrefix
         ]);
         /* @var \AppBundle\Entity\Block $block */
