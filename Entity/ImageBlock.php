@@ -3,7 +3,7 @@
 namespace Mdespeuilles\BlockBundle\Entity;
 
 use AppBundle\Entity\Traits\Image1Trait;
-use AppBundle\Entity\Traits\LanguageEntity;
+use Mdespeuilles\LanguageBundle\Entity\Traits\LanguageEntity;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Timestampable\Traits\TimestampableEntity;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
