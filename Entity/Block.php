@@ -3,7 +3,7 @@
 namespace Mdespeuilles\BlockBundle\Entity;
 
 use AppBundle\Entity\Traits\Blameable;
-use AppBundle\Entity\Traits\LanguageEntity;
+use Mdespeuilles\LanguageBundle\Entity\Traits\LanguageEntity;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Timestampable\Traits\Timestampable;
