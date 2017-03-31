@@ -2,7 +2,6 @@
 
 namespace Mdespeuilles\BlockBundle\Entity;
 
-use AppBundle\Entity\Traits\Blameable;
 use Mdespeuilles\LanguageBundle\Entity\Traits\LanguageEntity;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
@@ -17,7 +16,6 @@ use Gedmo\Timestampable\Traits\Timestampable;
 class Block
 {
     use Timestampable;
-    use Blameable;
     use LanguageEntity;
 
     /**
