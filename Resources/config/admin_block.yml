@@ -1,0 +1,29 @@
+easy_admin:
+    design:
+        menu:
+            - label: 'Block'
+              icon: 'archive'
+              children:
+                  - { label: 'Block text', entity: 'Block', icon: 'bars' }
+                  - { label: 'ImageBlock', entity: 'ImageBlock', icon: 'image' }
+    entities:
+        Block:
+            class: Mdespeuilles\BlockBundle\Entity\Block
+            form:
+                fields:
+                    - { type: 'group', css_class: 'col-sm-8', label: 'Informations basiques' }
+                    - { property: 'title', type: 'text' }
+                    - { property: 'body', type: 'ckeditor' }
+                    - { type: 'group', css_class: 'col-sm-4', label: 'Paramètres avancés' }
+                    - { property: 'translations' }
+                    - { property: 'language' }
+
+        ImageBlock:
+            class: Mdespeuilles\BlockBundle\Entity\ImageBlock
+            form:
+                fields:
+                    - { type: 'group', css_class: 'col-sm-8', label: 'Informations basiques' }
+                    - { property: 'title', type: 'text' }
+                    - { property: 'image1File', type: 'vich_image' }
+                    - { type: 'group', css_class: 'col-sm-4', label: 'Paramètres avancés' }
+                    - { property: 'language' }

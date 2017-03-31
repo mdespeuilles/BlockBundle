@@ -1,0 +1,18 @@
+services:
+    mdespeuilles.entity.block:
+        class: Doctrine\ORM\EntityRepository
+        factory: ["@doctrine.orm.entity_manager", getRepository]
+        arguments:
+            - Mdespeuilles\BlockBundle\Entity\Block
+
+    mdespeuilles.entity.image_block:
+        class: Doctrine\ORM\EntityRepository
+        factory: ["@doctrine.orm.entity_manager", getRepository]
+        arguments:
+            - Mdespeuilles\BlockBundle\Entity\ImageBlock
+
+    mdespeuilles.twig.block:
+        class: Mdespeuilles\BlockBundle\Services\Twig\Block
+        arguments: [ '@service_container' ]
+        tags:
+            - { name: twig.extension }
