@@ -52,17 +52,28 @@ class Block extends \Twig_Extension
             "id" => $id,
             "language" => $language
         ]);
+    
+        $adminLink = false;
+    
+        if ($this->container->get('security.authorization_checker')->isGranted('ROLE_ADMIN')) {
+            $path = $this->container->get('router')->generate("easyadmin", [
+                'entity' => 'Block',
+                'id' => $block->getId(),
+                'action' => 'edit'
+            ]);
+            $adminLink = "<a href=".$path." target='_blank' style='font-size: 12px;display: inline;'>edit</a>";
+        }
 
         if (!$block) {
             $askedBlock = $this->container->get("mdespeuilles.entity.block")->find($id);
             foreach($askedBlock->getTranslations() as $translation) {
                 if ($translation->getLanguage()->getPrefix() == $languagePrefix) {
-                    return $translation->getBody();
+                    return $translation->getBody().$adminLink;
                 }
             }
         }
 
-        return ($block) ? $block->getBody() : null;
+        return ($block) ? $block->getBody().$adminLink : null;
     }
 
     public function getImageBlock($id, $style = null)
@@ -70,6 +81,17 @@ class Block extends \Twig_Extension
         $block = $this->container->get("mdespeuilles.entity.image_block")->find($id);
         $helper = $this->container->get('vich_uploader.templating.helper.uploader_helper');
         $path = $helper->asset($block, 'image1File');
+    
+        $adminLink = false;
+    
+        if ($this->container->get('security.authorization_checker')->isGranted('ROLE_ADMIN')) {
+            $adminpath = $this->container->get('router')->generate("easyadmin", [
+                'entity' => 'Block',
+                'id' => $block->getId(),
+                'action' => 'edit'
+            ]);
+            $adminLink = "<a href=".$adminpath." target='_blank' style='font-size: 12px;display: inline;'>edit</a>";
+        }
 
         if ($style) {
             $imagineCacheManager = $this->container->get('liip_imagine.cache.manager');
@@ -78,7 +100,7 @@ class Block extends \Twig_Extension
 
         $alt = $block->getTitle();
 
-        return "<img src='$path' alt='$alt'/>";
+        return "<img src='$path' alt='$alt'/>" . $adminLink;
     }
 
     public function getName()
